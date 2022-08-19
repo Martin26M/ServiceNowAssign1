@@ -3,7 +3,9 @@ package ProFrameWork.ProFrameWork;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Driver;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -40,7 +42,8 @@ public class BaseTest {
 				driver = new FirefoxDriver();
 			}
 
-			driver.get(prop.getProperty("url"));
+			driver.get(prop.getProperty("url"));	
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			driver.manage().deleteAllCookies();
 			driver.manage().window().maximize();
 

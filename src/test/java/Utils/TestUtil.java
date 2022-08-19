@@ -41,7 +41,7 @@ public class TestUtil extends BaseTest {
 	public void Takescreenshot(String picname) throws IOException {
 
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(src, new File(System.getProperty("user.dir") + "\\Screenshots" + picname + ".png"));
+		FileUtils.copyFile(src, new File(System.getProperty("user.dir")+File.separator + "\\Screenshots" + picname + ".png"));
 
 	}
 
@@ -98,7 +98,7 @@ public class TestUtil extends BaseTest {
 
 	}
 
-	public void switchToParentWindow() {
+	public static void switchToParentWindow() {
 
 		Set<String> window = driver.getWindowHandles();
 		Iterator<String> it = window.iterator();

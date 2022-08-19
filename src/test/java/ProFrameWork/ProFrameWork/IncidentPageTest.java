@@ -1,10 +1,10 @@
 package ProFrameWork.ProFrameWork;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import ObjectRepos.ObjectRepo;
 import Utils.TestUtil;
-import junit.framework.Assert;
 
 public class IncidentPageTest extends BaseTest {
 	protected IncidentPage ip;
@@ -17,22 +17,32 @@ public class IncidentPageTest extends BaseTest {
 
 		ip = new IncidentPage(driver);
 		lp = new ServiceNowLoginPage(driver);
-		objrep = new ObjectRepo();
+		
 		driver.switchTo().frame("gsft_main");
 
 		lp.login();
-	
 
 		Assert.assertTrue(ip.filternavbox());
-		
+
 		ip.sendincidentText();
 		driver.switchTo().defaultContent();
+		
 		ip.clickCreateNow();
 
-//		ip.checkSearchField();
-//		ip.sendtextinsearch();
-//		TestUtil.switchToChildWindow();
-
-	}
+		ip.giveincidentNumber();
+		ip.firstsearch();
+		TestUtil.switchToChildWindow();
+		driver.manage().window().maximize();
+		Assert.assertTrue(ip.checkSearchField());
+		ip.sendtextinsearch();
+		ip.check();
+		TestUtil.switchToParentWindow();
+		System.out.println(driver.getTitle());
+		driver.switchTo().frame("gsft_main");
+		ip.descriptionText();
+		
+	
+	
+	 }
 
 }
